@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="//st.hfjy.com/render/jquery/jquery.min-2.2.0.js"></script>
+    <style>
+        *{margin: 0;padding: 0}
+        #box{height: 40px; border: solid 1px; overflow: hidden;line-height: 40px;position: relative;}
+        #ul1{
+            position: absolute;
+            animation:mymove 8s  ease-out forwards infinite alternate;
+        }
+        @keyframes mymove{
+            0%{top: 0px;}
+            33%{top: -40px;}
+            66%{top: -80px;}
+            100%{top: 0px;}
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+        <ul id="ul1">
+            <li>1111111111111111111111</li>
+            <li>2222222222222222222222</li>
+            <li>3333333333333333333333</li>
+        </ul>
+        <ul id="ul2"></ul>
+    </div>
+    <!-- <script>
+        window.onload = roll(200);
+
+        function roll(t) {
+            var ul1 = document.getElementById("ul1");
+            var ul2 = document.getElementById("ul2");
+            var box = document.getElementById("box");
+            ul2.innerHTML = ul1.innerHTML;
+            box.scrollTop = 0;
+            var timer = setInterval(rollStart, t);
+            box.onmouseover = function () {
+                clearInterval(timer)
+            }
+            box.onmouseout = function () {
+                console.log(1111)
+                timer = setInterval(rollStart, t);
+            }
+        }
+
+        function rollStart() {
+            if (box.scrollTop >= ul1.scrollHeight) {
+                box.scrollTop = 0;
+            } else {
+                // console.log($('#ul1 li:nth-child(1)').height())
+                // box.scrollTop+=$('#ul1 li:nth-child(1)').height();
+                box.animate({
+                    top:40
+                })
+            }
+        }
+    </script> -->
+</body>
+
+</html>
