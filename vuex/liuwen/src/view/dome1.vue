@@ -15,7 +15,6 @@
 <script>
 import Headerc from "../components/Header.vue";
 import Mainc from "../components/HelloWorld.vue";
-import store from "../vuex/store";
 // import {mapState} from 'vuex';
 import { mapState, mapMutations,mapGetters  } from "vuex";
 export default {

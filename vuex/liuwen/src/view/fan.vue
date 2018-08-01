@@ -1,49 +1,25 @@
 <template>
   <div id="app">
-    <Headerc></Headerc>
-    <Mainc></Mainc>
-    <div>
-        <p>{{ count }}</p>
-        <p>
-          <button @click="increment">+</button>
-          <button @click="$store.commit('decrement')">-</button>
-        </p>
-    </div>
+    <h3>Vuex购物车demo</h3>
+    <shop-list></shop-list>
+    <cart-list></cart-list>
+    <Info-list></Info-list>
   </div>
 </template>
 
 <script>
-import Headerc from "../components/Header.vue";
-import Mainc from "../components/HelloWorld.vue";
-import store from "../vuex/store";
-// import {mapState} from 'vuex';
-import { mapState, mapMutations,mapGetters  } from "vuex";
+import list from "../components/list.vue";
+import cart from "../components/cart.vue";
+import Info from "../components/Info.vue";
+import { mapGetters, mapActions, mapState } from 'vuex'
+
 export default {
   name: "App",
   components: {
-    Headerc,
-    Mainc
-  },
-  // computed: {
-  //   count() {
-  //     return store.state.count;
-  //   },
-  // },
-  // methods: {
-  //   increment() {
-  //     store.commit("increment");
-  //   },
-  // },
-  computed: {
-    ...mapState(["count"]),
-    ...mapGetters([
-      'doneTodosCount',
-      'doneTodos'
-    ]),
-  },
-
-  methods: mapMutations(["increment"]),
-
+    'shop-list':list,
+    'cart-list':cart,
+    'Info-list':Info
+  }
 };
 </script>
 
