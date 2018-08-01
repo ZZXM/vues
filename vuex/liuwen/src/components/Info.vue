@@ -1,10 +1,10 @@
 <template>
     <div class="cart-info">
         <div>
-            <div class='item'>总数：<strong>{{list.cartInfos.total_nums}}</strong></div>
-            <div class='item'>总价：<strong>{{list.cartInfos.total_price}}</strong></div>
+            <div class='item'>总数：<strong>{{getInfos.total_nums}}</strong></div>
+            <div class='item'>总价：<strong>{{getInfos.total_price}}</strong></div>
 
-            <div class="item pull-right btn btn-danger" @click='clear_db()'>清空购物车</div>
+            <div class="item pull-right btn btn-danger" @click='empty_cart()'>清空购物车</div>
         </div>
     </div>
 </template>
@@ -18,19 +18,18 @@ export default {
   computed: {
     ...mapState(["list"]),
     ...mapGetters([
-      "getInfos",
-      "getCartList"
-      // ...
+      "getInfos"
     ])
   },
   created() {},
   mounted() {
     // console.log(this.list.cartInfos.total_price);
+    
   },
   methods: {
-    clear_db(){
-
-    }
+    ...mapMutations([
+      'empty_cart'
+    ]),
   }
 };
 </script>

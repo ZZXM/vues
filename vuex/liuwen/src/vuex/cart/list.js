@@ -1,5 +1,3 @@
-import * as types from './mutations_types'
-
 export default {
   state: {
     //购物车列表
@@ -59,7 +57,16 @@ export default {
       var indesp = shop.id - 1;
       state.shop_list[indesp].num = parseInt(state.shop_list[indesp].num);
       state.shop_list[indesp].num = 0;
+      state.shop_list[indesp].prices = 0;
+    },
+    empty_cart(state){
+      state.shop_list.forEach(function(item){
+        item.num=0
+        item.prices=0
+
+      })
     }
+
   },
   actions: {
     add_sp: ({
@@ -85,20 +92,11 @@ export default {
       state.cartInfos.total_nums = 0;
       var list = state.shop_list;
       for (var i = 0; i < list.length; i++) {
-        console.log(list[i])
-        var price = parseInt(list[i].price),
-          num = parseInt(list[i].num);
-console.log(price)
-console.log(num)
-        state.cartInfos.total_price += price * num;
-        state.cartInfos.total_nums += num;
+        state.cartInfos.total_price += list[i].prices
+        state.cartInfos.total_nums +=list[i].num
       }
-      return state.cartInfos.total_price;
-    },
-    getCartList(state) {
       return state.cartInfos;
     }
-
   }
 
 }
