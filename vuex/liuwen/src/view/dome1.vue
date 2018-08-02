@@ -34,10 +34,6 @@ export default {
   // },
   computed: {
     ...mapState(["storeer"]),
-    ...mapGetters([
-      'doneTodosCount',
-      'doneTodos'
-    ]),
   },
 
   methods: mapMutations(["increment"]),
