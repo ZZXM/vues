@@ -2,6 +2,7 @@
   <div id="app">
     <h3>Vuex购物车demo</h3>
     <shop-list></shop-list>
+    <div>增加</div>
     <cart-list></cart-list>
     <Info-list></Info-list>
   </div>
