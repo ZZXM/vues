@@ -13,9 +13,6 @@ export default {
     };
   },
   methods: {
-    // setName() {
-    //   this.$store.state.userName = this.msg;
-    // }
     setName() {
       this.$store.commit("showUserName", this.msg);
     }

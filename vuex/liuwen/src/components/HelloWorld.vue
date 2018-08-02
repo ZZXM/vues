@@ -9,7 +9,7 @@ export default {
   name: "Main",
   computed: {
     myName() {
-      return this.$store.state.userName;
+      return this.$store.state.storeer.userName;
     }
   }
 };

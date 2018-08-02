@@ -11,7 +11,6 @@
 import list from "../components/list.vue";
 import cart from "../components/cart.vue";
 import Info from "../components/Info.vue";
-import { mapGetters, mapActions, mapState } from 'vuex'
 
 export default {
   name: "App",

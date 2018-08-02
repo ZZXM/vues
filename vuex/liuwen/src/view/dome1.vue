@@ -3,7 +3,7 @@
     <Headerc></Headerc>
     <Mainc></Mainc>
     <div>
-        <p>{{ count }}</p>
+        <p>{{ storeer.count }}</p>
         <p>
           <button @click="increment">+</button>
           <button @click="$store.commit('decrement')">-</button>
@@ -15,7 +15,6 @@
 <script>
 import Headerc from "../components/Header.vue";
 import Mainc from "../components/HelloWorld.vue";
-// import {mapState} from 'vuex';
 import { mapState, mapMutations,mapGetters  } from "vuex";
 export default {
   name: "App",
@@ -34,7 +33,7 @@ export default {
   //   },
   // },
   computed: {
-    ...mapState(["count"]),
+    ...mapState(["storeer"]),
     ...mapGetters([
       'doneTodosCount',
       'doneTodos'
