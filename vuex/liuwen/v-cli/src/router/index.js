@@ -2,8 +2,8 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import dome1 from "../view/dome1.vue";
 import fan from "../view/fan.vue";
-// import list from "../components/list.vue";
-
+import dome2 from "../view/dome2.vue";
+import dome3 from "../view/dome3.vue";
 
 Vue.use(Router)
 
@@ -16,9 +16,13 @@ export default new Router({
       path: '/fan',
       component: fan
     },
-    // {
-    //   path: '/list',
-    //   component: list
-    // }
+    {
+      path: '/dome2',
+      component: dome2
+    },
+    {
+      path: '/dome3',
+      component: dome3
+    }
   ]
 })
