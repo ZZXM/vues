@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>测一测，你是哪款气质型老师</title>
+  <!-- 字符编码 -->
+  <meta charset="utf-8">
+  <!-- IE兼容模式 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="renderer" content="webkit">
+  <meta name="keywords" content="">
+  <meta name="description" itemprop="description" content="">
+  <!-- 手机端兼容 -->
+  <meta itemprop="name" content="海风教育">
+  <meta itemprop="image" content="//s-www.hfjy.com/pc/images/mb-ico.png">
+  <meta name="robots" content="nofollow" />
+  <!-- 文件将不被检索，页面上的链接可以被查询。  -->
+  <!-- 2018.7 -->
+  <meta name="baidu-site-verification" content="tt2sDWUxfK" />
+  <meta name="360-site-verification" content="0ee4ecd31f2ce0a17e6abaa4f272a31f" />
+  <meta name="sogou_site_verification" content="9EGQiIYYVp" />
+  <link rel="stylesheet" href="../css/index.css">
+  <script src="../js/vue2.5.16.js"></script>
+  <script type="text/javascript">
+    (function () {
+      function w() {
+        var r = document.documentElement
+        var a = r.getBoundingClientRect().width
+        if (a > 750) {
+          a = 750
+        }
+        rem = a / 7.5
+        r.style.fontSize = rem + 'px'
+      }
+      var t
+      w()
+      window.addEventListener('resize', function () {
+        clearTimeout(t)
+        t = setTimeout(w, 300)
+      }, false)
+    })()
+  </script>
+</head>
+
+<body>
+  <script src="//cdn.jsdelivr.net/npm/eruda"></script>
+  <script>eruda.init();</script>
+
+  <div id="app">
+    <!-- 首页 -->
+    <div class="page01" v-if="(indexShow===true)">
+      <div class="page01-concent">
+        <img src="../img/jiaoshijie/page01.png" alt="教师节活动title" class="tltle01-img">
+        <div class="header-concent">
+          <img src="../img/jiaoshijie/page02.png" alt="教师节活动图案" class="tltle02-img">
+          <div class="header-details">
+            <img src="../img/jiaoshijie/page04.png" alt="测一测" class="tltle04-img">
+            <p class="ceyiece-title">你是哪款气质型老师</p>
+            <span class="imaginary-line"></span>
+            <p class="teacher-name-tltle">请输入您的名字</p>
+            <!-- <input type="text" class="teacher-name name" v-model="teacherName" placeholder="请输入你的名字" oninput="if(value.length > 10)value = value.slice(0, 10)"> -->
+
+            <input type="text" class="teacher-name name" v-model="teacherName" placeholder="请输入你的名字">
+            <button class="teacher-name-btn" @click="ActivityPermissions">测测你的气质</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- 失败-->
+    <div class="content-dialog pop-error"  v-if="(popErrorShow===true)">
+      <div class="Pop-text">
+        <div class="text">
+          <p class="Pop">{{popError}}</p>
+        </div>
+      </div>
+    </div>
+    <!-- 选题 -->
+    <activity-answer :props-all-questions=4 :curr-questions=1 :props-many-questions="propsManyQuestions1"
+      :props-questions-background="questionsBackground1" :props-questions-options="questionsOptions1"
+      :props-examination-questions="examinationQuestions1" @question="pageQuestion"></activity-answer>
+    <activity-answer :props-all-questions=4 :curr-questions=2 :props-many-questions="propsManyQuestions2"
+      :props-questions-background="questionsBackground2" :props-questions-options="questionsOptions2"
+      :props-examination-questions="examinationQuestions2" @question="pageQuestion"></activity-answer>
+    <activity-answer :props-all-questions=4 :curr-questions=3 :props-many-questions="propsManyQuestions3"
+      :props-questions-background="questionsBackground3" :props-questions-options="questionsOptions3"
+      :props-examination-questions="examinationQuestions3" @question="pageQuestion"></activity-answer>
+    <activity-answer :props-all-questions=4 :curr-questions=4 :props-many-questions="propsManyQuestions4"
+      :props-questions-background="questionsBackground4" :props-questions-options="questionsOptions4"
+      :props-examination-questions="examinationQuestions4" @question="pageQuestion"></activity-answer>
+
+    <div class="loading"  v-if="(loadingShow===true)">
+      <p class="loading-text">气质正在爆表中
+        <span class="loading-dynamic">
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+      </p>
+    </div>
+
+
+    <!-- 答案 -->
+    <announce-answer :props-answer="correctAnswer" :props-teacher-name="teacherName" :props-answer-background="answerBackground"></announce-answer>
+  </div>
+  <template id="measurement">
+    <div class="page0201" :style="questionsBackground"  v-if="(detailShow===true)">
+      <div class="AnswerSheet">
+        <div class="answer-option-concent">
+          <div class="answer-option-pagination">
+            <span class="pagination-bullet" v-for="(index) in allQuestions" :key="index" :class="index==currQuestions?'pagination-bulletActive':''"></span>
+          </div>
+          <h3 class="answer-option-swiper-headline">{{manyQuestions}}</h3>
+          <div class="answer-option-swiper-title">
+            <span class="answer-option-swiper-bullet"></span>
+            <span class="answer-option-swiper-title-text">{{examinationQuestions}}</span>
+          </div>
+          <ul class="answer-options">
+            <li class="answer-option" v-for="(item, index) in questionsOptions" :key="index" @click="selectStyle(item, index)"
+              :class="{allQuestionsActive : allQuestionsActive === index}" v-html="item.option"></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </template>
+
+  <template id="announceAnswer">
+    <div class="page03" :style="propsAnswerBackground"  v-if="(answerShow===true)">
+      <div class="page03-concent">
+        <div class="dfr answer-header-concent">
+          <div class="dfc">
+            <div class="answer-name-concont">
+              <p class="answer-text">{{propsTeacherName}}</p>
+            </div>
+            <div>
+              <img :src='this.propsAnswer.genre' alt="" class="page3000b-img">
+            </div>
+          </div>
+          <div class="dfc page3000a">
+            <img :src='this.propsAnswer.likeWho' alt="" class="page3000a-img">
+          </div>
+        </div>
+        <div class="answer-body-concent">
+          <p v-html="this.propsAnswer.textone"></p>
+          <p v-html="this.propsAnswer.texttwo"></p>
+          <p v-html="this.propsAnswer.textthree"></p>
+        </div>
+        <span class="imaginary-line"></span>
+        <footer class="answer-foot-concent">
+          <div class="dfr answer-foot-ceyice">
+            <div class="dfcjc">
+              <div class="dfrac ceyice-foot-concent">
+                <p>扫一扫</p>
+                <img :src='this.propsAnswer.arrowhead' alt="" class="answer060701-img">
+                <img :src='this.propsAnswer.arrowhead' alt="" class="answer060702-img">
+                <img :src='this.propsAnswer.arrowhead' alt="" class="answer060703-img">
+              </div>
+              <p>测一测，你是哪款气质型老师</p>
+            </div>
+            <div>
+              <img src="../img/jiaoshijie/page08.png" alt="" class="answer08-img">
+            </div>
+          </div>
+          <div class="foot-text">
+            <p>长按图片保存你的专属气质</p>
+            <span></span>
+          </div>
+        </footer>
+      </div>
+    </div>
+  </template>
+  <script>
+    var vm = new Vue({
+      el: "#app",
+      data: {
+        teacherName: "", //输入框name.value
+        teacherNameLEN: 0,
+        popError: "", //报错文字
+        popErrorShow: false, //报错框显示隐藏
+        indexShow: true, //首页显示隐藏
+        loadingShow: false,
+        totalArray: [], //totalArray 剩下的值
+        randomArray: [], //randomArray 返回的值
+        correctAnswer: {},
+        answerBackground:{},
+        questionsBackground1: { //背景图
+          backgroundImage: "url(../img/jiaoshijie/page0201.jpg)",
+          backgroundPosition: "center center",
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "100% 100%",
+        },
+        propsManyQuestions1: '第一题', //第几题
+        examinationQuestions1: '对老师来说阅读是自然习惯，休息时你会看以下那本书来凸显你的书香气质?', //题目
+        questionsOptions1: [ //选项
+          {
+            option: "A<span>&nbsp;&nbsp;你的教科书</span>  ",
+          },
+          {
+            option: "B<span>《杀死一只知更鸟》</span>",
+          },
+          {
+            option: "C<span>《社会心理学》</span> ",
+          }
+        ],
+        questionsBackground2: { //背景图
+          backgroundImage: "url(../img/jiaoshijie/page0202.jpg)",
+          backgroundPosition: "center center",
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "100% 100%",
+        },
+        propsManyQuestions2: '第二题', //第几题
+        examinationQuestions2: '学生作业不能少！你能原谅那些不按时交作业的学生吗？', //题目
+        questionsOptions2: [ //选项
+          {
+            option: "A<span>不能，会给到相应惩罚</span> ",
+          },
+          {
+            option: "B<span>能，做个温柔的老师</span>",
+          },
+          {
+            option: "C<span>具体看学生情况</span>",
+          }
+        ],
+        questionsBackground3: { //背景图
+          backgroundImage: "url(../img/jiaoshijie/page0203.jpg)",
+          backgroundPosition: "center center",
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "100% 100%",
+        },
+        propsManyQuestions3: '第三题', //第几题
+        examinationQuestions3: '做老师要对学生有爱心，以下哪种性格的学生更讨你喜欢？', //题目
+        questionsOptions3: [ //选项
+          {
+            option: "A<span>信心不足的学生，很容易玻璃心</span>",
+          },
+          {
+            option: "B<span>非常懒的学生，但是有小聪明</span>",
+          },
+          {
+            option: "C<span>固执己见的学生，有自己思路</span>",
+          },
+          {
+            option: "D<span>以上都不喜欢</span>",
+          }
+        ],
+        questionsBackground4: { //背景图
+          backgroundImage: "url(../img/jiaoshijie/page0204.jpg)",
+          backgroundPosition: "center center",
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "100% 100%",
+        },
+        propsManyQuestions4: '第四题', //第几题
+        examinationQuestions4: '如果可以变身，你想当男老师还是女老师？', //题目
+        questionsOptions4: [ //选项
+          {
+            option: "A<span>男老师</span>",
+          },
+          {
+            option: "B<span>女老师</span>",
+          }
+        ],
+        // answer答案<span></span>
+        answer: {
+          maleTeacher: [ //  男生
+            {
+              genre: "../img/jiaoshijie/page3001b.png", //类型
+              likeWho: "../img/jiaoshijie/page3001a.png", //像谁
+              textone: "有点犯二犯傻，有点可爱。典型<span>人来疯</span>，很容易知足，就算再难过也会有自己的调节方式，<span>有自己的生活态度</span> ", //文案1
+              texttwo: "<span>课堂上很有感染力</span>你是校长派来的逗比吗”！你可以和学生调侃玩笑， <span>大智若愚</span>，能轻松的化解和学生之间的很多问题，营造一个开心的学习氛围！",
+              textthree: "让学生感觉有你这个老师是他们的“小幸运”，感受学习是件开心的事！",
+              arrowhead: "../img/jiaoshijie/page06.png", //男生地标
+            },
+            {
+              genre: "../img/jiaoshijie/page3002b.png", //类型
+              likeWho: "../img/jiaoshijie/page3002a.png", //像谁
+              textone: "在学生眼中，你不仅仅是一个老师，更是一个偶像，出现在韩剧中的霸道总裁，跟你的形象如出一辙，你做事的<span>目标清晰，行动力十足</span>，所以总给学生一种雷厉风行的感觉。", //文案1
+              texttwo: "为了赶上你的进度，你的学生总是需要加倍努力，不过，相信你一定收到过这样的评价：精准高效。",
+              textthree: "是的，你就是<span>教学能力中当之无愧的king！</span>",
+              arrowhead: "../img/jiaoshijie/page06.png", //男生地标
+            },
+            {
+              genre: "../img/jiaoshijie/page3003b.png", //类型
+              likeWho: "../img/jiaoshijie/page3003a.png", //像谁
+              textone: "谦谦公子，博学广知，课堂上的你，<span>吐字清晰，不紧不慢</span>，是因为你的胸有成竹。如果说学富五车太过夸张，那也绝对担得起<span>才华横溢</span>四个字。", //文案1
+              texttwo: "在你的课堂上，学生总是<span>如沐春风</span>，仿佛再晦涩难懂的知识点在你眼中都是一杯精美包装值得细细品味的茶。",
+              textthree: "<span>苦涩却有回甘</span>，恰如你的人一般。",
+              arrowhead: "../img/jiaoshijie/page06.png", //男生地标
+            }
+          ],
+          womanTeacher: [{
+              genre: "../img/jiaoshijie/page3004b.png", //类型
+              likeWho: "../img/jiaoshijie/page3004a.png", //像谁
+              textone: "自己的兴趣爱好永远都放在第一位，基本上所有的事情都想<span>按照自己喜欢的节奏</span>去做，<span>冷静理智</span>。", //文案1
+              texttwo: "学生很难搞，要么静观其变，要么嫌麻烦交给父母处理，学生会很怕你，但是父母很信赖你！",
+              textthree: "一看你就是那种学生虐我千百遍，任你欢脱我“随便”的<span>佛系</span>型老师。",
+              arrowhead: "../img/jiaoshijie/page07.png", //男生地标
+            },
+            {
+              genre: "../img/jiaoshijie/page3005b.png", //类型
+              likeWho: "../img/jiaoshijie/page3005a.png", //像谁
+              textone: "天真灵动，活泼率真，并不是别人看来的“傻白甜”。你可以说是深藏不露，有<span>姣好的容颜</span>，同时<span>智慧非凡</span>。", //文案1
+              texttwo: "作为老师的你会给学生带来很多新奇的教学方式，但也有作为<span>“仙女”的多愁善感</span>，感同身受般，你能细心观察到学生情绪。",
+              textthree: "懂得照顾学生，所以学生很容易和你交心做朋友！",
+              arrowhead: "../img/jiaoshijie/page07.png", //男生地标
+            },
+            {
+              genre: "../img/jiaoshijie/page3006b.png", //类型
+              likeWho: "../img/jiaoshijie/page3006a.png", //像谁
+              textone: "凌厉的眼神，轻易不上扬的嘴角，<span>走路带风，气场爆表</span>的女王大人，学生看到你的第一反应是由衷地赞叹和敬仰。", //文案1
+              texttwo: "然而，你高冷的外表下掩藏的是一颗最最柔软的心。你将所有的喜怒哀乐化作<span>理智与淡然</span>，与你朝夕相处的学生都能看到你<span>冷艳外表下的少女心。</span>",
+              textthree: "没错，学生眼中的你，有一份藏也藏不住的天然萌。",
+              arrowhead: "../img/jiaoshijie/page07.png", //男生地标
+            },
+            {
+              genre: "../img/jiaoshijie/page3007b.png", //类型
+              likeWho: "../img/jiaoshijie/page3007a.png", //像谁
+              textone: "<span>蕙质兰心、气质如兰</span>这样的词就是为你量身定做的，当你站在讲台上，即使不说一句话，也会被你<span>高贵优雅</span>的style震慑，心甘情愿“吃”下每一个难解的知识点。", //文案1
+              texttwo: "你的学生会为有你这样的<span>女神老师</span>感到幸福，而你也会用自己的体贴温柔感动每一个孩子。“太美”，可不是原罪。",
+              textthree: "别怀疑，你就是老师中最亮眼的那一颗星！",
+              arrowhead: "../img/jiaoshijie/page07.png", //男生地标
+            }
+          ],
+          maleTeacherBackground: { //背景图
+            backgroundImage: "url(../img/jiaoshijie/page0301.jpg)",
+            backgroundPosition: "center center",
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "100% 100%",
+          },
+          womanTeacherBackground: { //背景图
+            backgroundImage: "url(../img/jiaoshijie/page0302.jpg)",
+            backgroundPosition: "center center",
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "100% 100%",
+          },
+
+        }
+
+      },
+      watch: {
+        teacherName: function (val) {
+          this.teacherName = val
+        }
+      },
+      methods: {
+        pageQuestion(res) {
+          var self = this
+          var pageQuestions = document.querySelector('.page0201');
+          if (res[1] < 4) {
+            vm.$children[res[1] - 1].detailShow = false
+            vm.$children[res[1]].detailShow = true
+          } else {
+            vm.$children[res[1] - 1].detailShow = false;
+            self.loadingShow = !self.loadingShow;
+            setTimeout(function () {
+              self.loadingShow = false;
+              vm.$children[res[1]].answerShow = true
+              if (res[0].option.indexOf("A") == 0) { //
+                self.selRandomNum(vm.answer.maleTeacher.length, 1)
+                self.correctAnswer = vm.answer.maleTeacher[self.randomArray]
+                self.answerBackground=vm.answer.maleTeacherBackground
+              } else {
+                self.selRandomNum(vm.answer.womanTeacher.length, 1)
+                self.correctAnswer = vm.answer.womanTeacher[self.randomArray]
+                self.answerBackground=vm.answer.womanTeacherBackground
+              }
+            }, 2000)
+          }
+        },
+        // pageQuestion:function(e){
+        //   console.log(e)
+        // },
+        // teacherNameLEN:function(){
+        //   var self = this;
+
+        // },
+        ActivityPermissions() {
+          var self = this;
+          self.teacherNameLEN = 0;
+          for (var i = 0, j = self.teacherName.length; i < j; i++) {
+            var rx = /[a-z\d]/i,
+              rxcn = /[\u4e00-\u9fa5]/
+            chr = self.teacherName.charAt(i); /////////
+            if (rx.test(chr)) self.teacherNameLEN += 1;
+            else if (rxcn.test(chr)) self.teacherNameLEN += 2;
+          }
+          console.log(self.teacherNameLEN)
+          if (!self.teacherName) {
+            self.popError = "请输入姓名"
+            self.popErrorShow = !self.popErrorShow
+            setTimeout(function () {
+              self.popErrorShow = false;
+            }, 2000)
+          } else if (!/^[\u4E00-\u9FA5\uf900-\ufa2d·sa-zA-Z]*$/.test(self.teacherName)) {
+            self.popErrorShow = false;
+            self.popError = "请输入正确姓名"
+            self.popErrorShow = !self.popErrorShow
+            setTimeout(function () {
+              self.popErrorShow = false
+            }, 2000)
+          } else if (self.teacherNameLEN > 12) {
+            self.popErrorShow = false;
+            self.popError = "名字长度超出限制"
+            self.popErrorShow = !self.popErrorShow
+            setTimeout(function () {
+              self.popErrorShow = false
+            }, 2000)
+          } else {
+            self.indexShow = !self.indexShow;
+            self.$children[0].detailShow = true;
+          }
+        },
+        selRandomNum(count, randomCount) {
+          //count数组总数,randomCount取几个数
+          //totalArray 剩下的值,randomArray 返回的值
+          // console.log(count, randomCount)
+          self = this;
+          var count = count || 10;
+          var randomCount = randomCount || 3;
+          for (var i = 0, l = count; i < l; i++) {
+            self.totalArray.push(i);
+          }
+          for (var i = 0, l = randomCount; i < l; i++) {
+            var randomIndex = Math.floor(Math.random() * self.totalArray.length); //随机数*数组length然后在floor
+            var selectIndex = self.totalArray.splice(randomIndex, 1)[0];
+            self.randomArray.push(selectIndex);
+          }
+          console.log(self.totalArray, self.randomArray)
+        }
+      },
+      computed: {
+
+      },
+      components: {
+        // 试题组件
+        "activity-answer": {
+          template: "#measurement",
+          data: function () {
+            return {
+              allQuestions: this.propsAllQuestions, //总共几题
+              currQuestions: this.CurrQuestions, //圆点是第几个
+              manyQuestions: this.propsManyQuestions, //第几题
+              examinationQuestions: this.propsExaminationQuestions, //题目
+              questionsOptions: this.propsQuestionsOptions, //选项
+              questionsBackground: this.propsQuestionsBackground, //背景图
+              detailShow: false,
+              allQuestionsActive: '',
+            }
+          },
+          props: {
+            'propsAllQuestions': {
+              //总共几题
+              type: Number,
+              required: true
+            },
+            'CurrQuestions': {
+              //圆点是第几个
+              type: Number,
+              required: true
+            },
+            'propsManyQuestions': { //第几题
+              type: String,
+              required: true
+            },
+            'propsExaminationQuestions': { //题目
+              type: String,
+              required: true
+            },
+            'propsQuestionsOptions': { //选项
+              type: Array,
+              required: true
+            },
+            'propsQuestionsBackground': { //背景图
+              type: Object,
+              required: true
+            }
+          },
+          methods: {
+            selectStyle(item, index) {
+              var self = this;
+              self.allQuestionsActive = index;
+              setTimeout(function () {
+                self.$emit('question', [item, self.CurrQuestions]);
+              }, 200)
+            }
+          }
+        },
+        // 答案组件
+        "announce-answer": {
+          template: "#announceAnswer",
+          data: function () {
+            return {
+              Tanswer: this.propsAnswer, //男女资料
+              answerShow: false, //答案页
+            }
+          },
+          props: {
+            'propsAnswer': { //背景图
+              type: Object,
+              required: true
+            },
+            'propsTeacherName': {
+              type: String,
+              required: true,
+              default: '某某某',
+            },
+            'propsAnswerBackground':{
+              type: Object,
+              required: true
+            }
+
+          },
+          methods: {}
+        }
+      },
+
+    })
+  </script>
+
+  <!-- <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+  <script>
+    var appid = '{$appid}';
+    var time = "{$jsSdk.time}";
+    var nonceStr = "{$jsSdk.nonceStr}";
+    var signature = "{$jsSdk.signature}";
+    var share_link = '{$share_link}';
+  </script>
+  <script src="../js/share.js"></script> -->
+</body>
+
+</html>

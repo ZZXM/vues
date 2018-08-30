@@ -1,0 +1,617 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+#app {
+  width: 100%;
+  height: 100%;
+}
+
+html {
+  width: 100%;
+  height: 100%;
+  -ms-text-size-adjust: none;
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+body {
+  font-size: 0.24rem;
+  /* =16px */
+  font-family: "Segoe UI", "Lucida Grande", Helvetica, Arial, "Microsoft YaHei", FreeSans, Arimo, "Droid Sans", "wenquanyi micro hei", "Hiragino Sans GB", "Hiragino Sans GB W3", Arial, sans-serif;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  -webkit-overflow-scrolling: touch;
+  overflow: hidden;
+  overflow-y: auto;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
+  border: 0;
+}
+
+li {
+  list-style: none;
+}
+
+body {
+  max-width: 7.5rem;
+  margin: auto;
+}
+
+#app .page0201 {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  /* display: none; */
+}
+
+.AnswerSheet {
+  position: absolute;
+  width: 90%;
+  height: 69%;
+  top: 50%;
+  left: 50%;
+  margin-top: -40%;
+  margin-left: -45%;
+  /* background: red; */
+  /* opacity: 0.2; */
+}
+
+#app .AnswerSheet .answer-option-concent {
+  width: 100%;
+  height: 100%;
+}
+
+#app .AnswerSheet .answer-option-pagination {
+  width: 100%;
+  height: 15px;
+  display: flex;
+  display: -webkit-flex;
+  -webkit-flex-direction: row;
+  flex-direction: row;
+  -webkit-justify-content: center;
+  justify-content: center;
+  padding-top: 0.8rem;
+}
+
+#app .AnswerSheet .pagination-bullet {
+  width: 8px;
+  height: 8px;
+  display: inline-block;
+  border-radius: 100%;
+  border: 1px solid #3599c0;
+  margin: 0 5px;
+}
+
+#app .AnswerSheet .pagination-bulletActive {
+  background-color: #3599c0;
+}
+
+#app .AnswerSheet .answer-option-swiper-headline {
+  width: 1.45rem;
+  height: 0.4rem;
+  line-height: 0.4rem;
+  margin: 0.15rem auto 0;
+  border: 1px solid #3599c0;
+  border-radius: 0.4rem;
+  font-size: 0.32rem;
+  color: #3599c0;
+  text-align: center;
+  /* box-shadow: 2px 3px 5px #e3eefa; */
+  background: #fff;
+}
+
+#app .AnswerSheet .answer-option-swiper-title {
+  width: 80%;
+  margin-left: 10%;
+  margin-top: 0.4rem;
+  display: flex;
+  position: relative;
+}
+
+#app .AnswerSheet .answer-option-swiper-bullet {
+  width: 0.2rem;
+  height: 0.2rem;
+  border-radius: 100%;
+  background-color: #3599c0;
+  z-index: 1;
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin-top: 0.15rem;
+}
+
+#app .AnswerSheet .answer-option-swiper-title-text {
+  display: inline-block;
+  font-size: 0.28rem;
+  color: #474747;
+  line-height: 0.5rem;
+  text-indent: 1.5em;
+}
+
+#app .AnswerSheet .answer-options {
+  width: 100%;
+  min-height: 4.6rem;
+  display: flex;
+  display: -webkit-flex;
+  flex-direction: column;
+  -webkit-flex-direction: column;
+  justify-content: center;
+  -webkit-justify-content: center;
+}
+.allQuestionsActive {
+  background: #25718F!important;
+}
+#app .AnswerSheet .answer-options .answer-option {
+  width: 80%;
+  height: 1rem;
+  line-height: 1rem;
+  padding-left: 0.3rem;
+  margin: 0.2rem auto 0;
+  background: #3599c0;
+  border-radius: 0.1rem;
+  font-size: 0.32rem;
+  color: #fff;
+}
+#app .AnswerSheet .answer-options .answer-option span{ 
+  text-indent: 1em;
+  display: inline-flex;
+}
+
+/* 首页 */
+.page01 {
+  position: relative;
+  width: 7.5rem;
+  height: 13.34rem;
+  background-image: url(../img/jiaoshijie/page0101.jpg);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.page01-concent {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.tltle01-img {
+  margin: 1.5rem 1.85rem 0;
+  width: 3.8rem;
+  height: 2.1rem;
+}
+
+.header-concent {
+  width: 7.1rem;
+  height: 7.3rem;
+  position: relative;
+  margin: 1.85rem 0.2rem 0;
+  background: url(../img/jiaoshijie/page03.png) no-repeat;
+  background-size: 100% 100%;
+}
+
+.header-concent .tltle02-img {
+  width: 3.3rem;
+  height: 2.2rem;
+  position: absolute;
+  top: -1.8rem;
+  right: 0.35rem;
+}
+
+.header-concent .header-details {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  display: -webkit-flex;
+  flex-direction: column;
+  -webkit-flex-direction: column;
+  align-items: center;
+  -webkit-align-items: center;
+}
+
+.header-concent .header-details .tltle04-img {
+  width: 3rem;
+  height: 1rem;
+  margin: 0.7rem 0 0.4rem;
+}
+
+.header-concent .header-details .ceyiece-title {
+  font-size: 0.42rem;
+  color: #25718e;
+  line-height: 0.5rem;
+  font-weight: 550;
+}
+
+.header-concent .header-details .imaginary-line {
+  display: inline-block;
+  width: 5.5rem;
+  height: 0.06rem;
+  border-bottom: 2px dashed #25718f;
+  margin-top: 0.3rem;
+}
+
+.header-concent .header-details .teacher-name-tltle {
+  margin: 0.65rem 0 0.35rem;
+  font-size: 0.36rem;
+  color: #25718e;
+}
+
+.header-concent .header-details .teacher-name {
+  width: 5.2rem;
+  height: 0.8rem;
+  line-height: 0.8rem;
+  color: #464747;
+  border: 1px solid #bfbfbf;
+  border-radius: 4px;
+  padding: 0 0.2rem;
+  margin-bottom: 0.5rem;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  -webkit-transition: border-color ease-in-out 0.15s, -webkit-box-shadow ease-in-out 0.15s;
+  -o-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+  transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+}
+
+.header-concent .header-details .teacher-name:focus {
+  border-color: rgba(37, 113, 143, 1);
+  outline: 0;
+  outline: thin dotted \9;
+  /* IE6-9 */
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(37, 113, 143, 1);
+  -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(37, 113, 143, 1);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(37, 113, 143, 1);
+}
+
+.header-concent .header-details .teacher-name-btn {
+  width: 3rem;
+  height: 0.8rem;
+  line-height: 0.8rem;
+  border-radius: 100px;
+  font-size: 0.32rem;
+  color: #ffffff;
+  outline: 0;
+  background-image: linear-gradient(-180deg, #25718f 2%, #25718f 100%);
+  border: 0;
+  box-shadow: 1px 4px 0px rgba(37, 113, 143, 0.2);
+}
+
+/* 失败 */
+.Pop-text {
+  top: 45%;
+  position: fixed;
+  z-index: 90;
+  width: 100%;
+  max-width: 750px;
+  min-height: 40px;
+  line-height: 40px;
+  font-size: 15px;
+  text-align: center;
+  border-radius: 5px;
+  color: #ffffff;
+}
+
+.Pop-text .text {
+  display: flex;
+  display: -webkit-flex;
+  justify-content: center;
+  -webkit-justify-content: center;
+}
+
+.Pop-text p {
+  font-size: 14px;
+  text-align: center;
+  padding: 0 10px;
+  background: rgba(17, 17, 17, 0.7);
+  border-radius: 5px;
+}
+
+/* 答案 */
+.page03 {
+  position: relative;
+  width: 7.5rem;
+  height: 13.34rem;
+  background-image: url(../img/jiaoshijie/page0301.jpg);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.page03 .page03-concent {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.answer-header-concent {
+  padding: 2.4rem 0 0 0.6rem;
+}
+
+.page03 .page03-concent .imaginary-line {
+  width: 5.8rem;
+  border-bottom: 1px dashed #383838;
+  margin-top: 0.3rem;
+  margin-left: 0.85rem;
+}
+
+.answer-name-concont {
+  /* display: flex;
+  display: -webkit-flex;
+  justify-content: space-around;
+  -webkit-justify-content: space-around; */
+  width: 3.6rem;
+  height: 0.6rem;
+  margin-left: 0.2rem;
+}
+
+.answer05-img {
+  width: 0.11rem;
+  height: 0.28rem;
+}
+
+.answer05-left {
+  align-self: flex-start;
+  -webkit-align-self: flex-start;
+}
+
+.answer-text {
+  /* align-self: center;
+  -webkit-align-self: center; */
+  font-size: 0.40rem;
+  letter-spacing: 0.05rem;
+  color: #474747;
+}
+
+.answer05-right {
+  align-self: flex-end;
+  -webkit-align-self: flex-end;
+  transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  /* IE 9 */
+  -moz-transform: rotate(180deg);
+  /* Firefox */
+  -webkit-transform: rotate(180deg);
+  /* Safari 和 Chrome */
+  -o-transform: rotate(180deg);
+}
+
+.dfr {
+  display: flex;
+  display: -webkit-flex;
+  flex-direction: row;
+  -webkit-flex-direction: row;
+}
+
+.dfc {
+  display: flex;
+  -webkit-display: flex;
+  flex-direction: column;
+  -webkit-flex-direction: column;
+}
+
+.dfcjc {
+  display: flex;
+  -webkit-display: flex;
+  flex-direction: column;
+  -webkit-flex-direction: column;
+  justify-content: center;
+  -webkit-justify-content: center;
+}
+
+.dfcac {
+  display: flex;
+  -webkit-display: flex;
+  flex-direction: column;
+  -webkit-flex-direction: column;
+  align-items: center;
+  -webkit-align-items: center;
+}
+
+.dfrac {
+  display: flex;
+  -webkit-display: flex;
+  flex-direction: row;
+  -webkit-flex-direction: row;
+  align-items: center;
+  -webkit-align-items: center;
+}
+
+.page03 .page03-concent .page3000a {
+  margin-left: -0.4rem
+}
+
+.page03 .page03-concent .page3000a-img {
+  width: 2.8rem;
+  height: 3.5rem;
+}
+
+.page3000b-img {
+  width: 3.6rem;
+  height: 1.3rem;
+  margin-top: 0.2rem;
+}
+
+.page03 .page03-concent .answer-body-concent {
+  width: 5.8rem;
+  margin: auto;
+}
+
+.page03 .page03-concent .answer-body-concent p {
+  font-size: 0.24rem;
+  color: #383838;
+  margin-top: 0.3rem;
+}
+
+.page03 .page03-concent .answer-body-concent span {
+  color: #171717;
+  font-weight: 600;
+}
+
+.page03 .page03-concent .answer-body-concent p:nth-child(1) {
+  margin-top: 0.4rem;
+}
+
+.page03 .answer-foot-concent {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  margin-bottom: 0.4rem;
+  width: 100%;
+}
+
+.page03 .answer-foot-concent .answer-foot-ceyice {
+  width: 5.8rem;
+  margin-bottom: 1rem;
+  margin-left: 0.85rem;
+  justify-content: space-between;
+  -webkit-justify-content: space-between;
+}
+
+.page03 .answer-foot-concent .answer-foot-ceyice p {
+  font-size: 0.22rem;
+  color: #383838;
+  line-height: 0.31rem;
+}
+
+.page03 .answer-foot-concent .answer-foot-ceyice p:nth-child(2) {
+  margin-top: 0.1rem;
+}
+
+.page03 .answer-foot-concent .answer060701-img {
+  width: 0.17rem;
+  height: 0.17rem;
+  margin-left: 0.1rem;
+}
+
+.page03 .answer-foot-concent .answer060702-img {
+  width: 0.15rem;
+  height: 0.15rem;
+  opacity: 0.8;
+
+}
+
+.page03 .answer-foot-concent .answer060703-img {
+  width: 0.15rem;
+  height: 0.15rem;
+  opacity: 0.6;
+
+}
+
+.page03 .answer-foot-concent .answer08-img {
+  width: 1.4rem;
+  height: 1.4rem;
+  margin-top: 0.15rem;
+}
+
+.answer-foot-concent .foot-text p {
+  text-align: center;
+  color: #FEFFFE;
+}
+
+.answer-foot-concent .foot-text span {
+  position: absolute;
+  display: inline-block;
+  border-bottom: 1px solid rgba(255, 255, 255,0.8);
+  width: 3rem;
+  margin: 0 2.25rem;
+  margin-top: 0.05rem;
+}
+
+.loading {
+  position: relative;
+  width: 100%;
+  max-width: 750px;
+  margin: auto;
+  height: 100%;
+  background-image: url(../img/jiaoshijie/loading.jpg);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.loading-text {
+  position: absolute;
+  width: 18px;
+  height: 200px;
+  font-size: 18px;
+  left: 50%;
+  top: 40%;
+  margin-left: -7px;
+  margin-top: -130px;
+  text-align: center;
+  color: #6D6B6B;
+}
+
+.loading-dynamic {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.loading-dynamic span {
+  display: block;
+  width: 5px;
+  height: 5px;
+  background: #6D6B6B;
+  border-radius: 10px;
+  -webkit-animation: load 0.6s ease infinite;
+}
+
+.loading-dynamic span:nth-child(1) {
+  margin-top: 0.15rem;
+  -webkit-animation-delay: 0.2s;
+}
+
+.loading-dynamic span:nth-child(2) {
+  margin-top: 0.15rem;
+  -webkit-animation-delay: 0.4s;
+}
+
+.loading-dynamic span:nth-child(3) {
+  margin-top: 0.15rem;
+  -webkit-animation-delay: 0.6s;
+}
+.foot-text{
+  position: relative;
+}
+
+@keyframes load {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0.2;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .page03 .imaginary-line {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 375px) {
+  .page03 .imaginary-line {
+    display: inline-block;
+  }
+}
+
+@media screen and (min-width: 1025px) {
+  #app .page0201 {
+    min-width: 750px;
+    min-height: 1334px;
+  
+  }
+  #app{
+    margin-top: 5px;
+  }
+}

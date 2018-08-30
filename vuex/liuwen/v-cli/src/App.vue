@@ -6,6 +6,8 @@
         <router-link to="/fan" class="item-route">fan</router-link>
         <router-link to="/dome2" class="item-route">dome2</router-link>
         <router-link to="/dome3" class="item-route">dome3</router-link>
+        <router-link to="/dome4" class="item-route">dome4</router-link>
+        <router-link to="/dome5" class="item-route">dome5</router-link>
      </div>
    
   </div>
